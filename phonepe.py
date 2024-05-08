@@ -12,7 +12,7 @@ from PIL import Image
 mydb = psycopg2.connect(host = 'localhost',
                         user = 'postgres',
                         port = '5432',
-                        password = 'NK19',
+                        password = 'PASSWORD',
                         database = 'phonepe_data')
 cursor = mydb.cursor()
 
@@ -286,7 +286,8 @@ def map_user_plot_2(df, quarter):
     muyqg= muyq.groupby("States")[["RegisteredUsers", "AppOpens"]].sum()
     muyqg.reset_index(inplace= True)
 
-    fig_line_1= px.line(muyqg, x= "States", y= ["RegisteredUsers", "AppOpens"], title= f"{df['Years'].min()} YEARS {quarter} QUARTER REGISTERED USER, APPOPENS",
+    fig_line_1= px.line(muyqg, x= "States", y= ["RegisteredUsers", "AppOpens"],
+                        title= f"{df['Years'].min()} YEARS {quarter} QUARTER REGISTERED USER, APPOPENS",
                         width= 1000, height= 800, markers= True)
     st.plotly_chart(fig_line_1)
 
@@ -301,11 +302,13 @@ def map_user_plot_3(df, states):
     col1, col2 = st.columns(2)
 
     with col1:
-        fig_map_user_bar_1 = px.bar(muyqs, x= "RegisteredUsers", y= 'Districts', orientation= 'h', title= f"{states.upper()} REGISTERED USER", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow_r)
+        fig_map_user_bar_1 = px.bar(muyqs, x= "RegisteredUsers", y= 'Districts', orientation= 'h',
+                                    title= f"{states.upper()} REGISTERED USER", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow_r)
         st.plotly_chart(fig_map_user_bar_1)
 
     with col2:
-        fig_map_user_bar_2 = px.bar(muyqs, x= "AppOpens", y= 'Districts', orientation= 'h', title= f"{states.upper()} APPOPENS", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow)
+        fig_map_user_bar_2 = px.bar(muyqs, x= "AppOpens", y= 'Districts', orientation= 'h',
+                                    title= f"{states.upper()} APPOPENS", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow)
         st.plotly_chart(fig_map_user_bar_2)
 
 #top insurance plot
@@ -317,11 +320,13 @@ def top_insur_plot_1(df, states):
     col1, col2 = st.columns(2)
 
     with col1:
-        fig_top_insur_bar_1 = px.bar(tiy, x= 'Quarter', y= 'Transaction_amount' , hover_data= ['Pincodes'], title= f"REGISTERED USER", height= 650, width= 600, color_discrete_sequence= px.colors.sequential.GnBu_r)
+        fig_top_insur_bar_1 = px.bar(tiy, x= 'Quarter', y= 'Transaction_amount' , hover_data= ['Pincodes'],
+                                     title= f"REGISTERED USER", height= 650, width= 600, color_discrete_sequence= px.colors.sequential.GnBu_r)
         st.plotly_chart(fig_top_insur_bar_1)
 
     with col2:
-        fig_top_insur_bar_2= px.bar(tiy, x= "Quarter", y= "Transaction_count", hover_data= ['Pincodes'], title= "TRANSACTION COUNT", height= 650,width= 600, color_discrete_sequence= px.colors.sequential.Agsunset_r)
+        fig_top_insur_bar_2= px.bar(tiy, x= "Quarter", y= "Transaction_count", hover_data= ['Pincodes'],
+                                    title= "TRANSACTION COUNT", height= 650,width= 600, color_discrete_sequence= px.colors.sequential.Agsunset_r)
         st.plotly_chart(fig_top_insur_bar_2)
 
 
@@ -334,7 +339,8 @@ def top_user_plot_1(df, year):
     tuyg = pd.DataFrame(tuy.groupby(['States', 'Quarter'])['RegisteredUsers', 'Pincodes'].sum())
     tuyg.reset_index(inplace= True)
 
-    fig_top_plot_1 = px.bar(tuyg, x= 'States', y= 'RegisteredUsers', color= 'Quarter', width= 1000, height= 800, color_discrete_sequence= px.colors.sequential.Burgyl, hover_name= tuyg['States'], title= f"{year} REGISTERED USERS")
+    fig_top_plot_1 = px.bar(tuyg, x= 'States', y= 'RegisteredUsers', color= 'Quarter', width= 1000, height= 800,
+                            color_discrete_sequence= px.colors.sequential.Burgyl, hover_name= tuyg['States'], title= f"{year} REGISTERED USERS")
     st.plotly_chart(fig_top_plot_1)
 
     return tuy
@@ -346,7 +352,8 @@ def top_user_plot_2(df, state):
     tuys = df[df['States'] == state]
     tuys.reset_index(drop= True, inplace= True)
 
-    fig_top_plot_1 = px.bar(tuys, x= 'Quarter', y= 'RegisteredUsers', title= 'State', width= 1000, height= 800, color= 'RegisteredUsers', hover_data= ['Pincodes'], color_continuous_scale = px.colors.sequential.Magenta)
+    fig_top_plot_1 = px.bar(tuys, x= 'Quarter', y= 'RegisteredUsers', title= 'State', width= 1000, height= 800,
+                            color= 'RegisteredUsers', hover_data= ['Pincodes'], color_continuous_scale = px.colors.sequential.Magenta)
     st.plotly_chart(fig_top_plot_1)
 
 
@@ -656,7 +663,12 @@ if select == 'Home':
         st.header("PHONEPE")
         st.subheader("INDIA'S BEST TRANSACTION APP")
         st.write("This Streamlit application is developed only for educational purposes")
-        st.write("PhonePe is a comprehensive digital payments platform that enables users to make payments, transfer money, recharge mobile phones, pay utility bills, shop online, and more, directly from their smartphones. Built on the Unified Payments Interface (UPI) platform, PhonePe allows users to make instant bank-to-bank transfers using their mobile numbers linked with their bank accounts. The app also offers features like bill payments, online shopping, split bills, request money, investments, insurance, credit services, QR code payments, and various cashback offers and discounts. Overall, PhonePe provides a seamless and convenient digital payments experience to its users.")
+        st.write("PhonePe is a comprehensive digital payments platform that enables users to make payments,
+         transfer money, recharge mobile phones, pay utility bills, shop online, and more, directly from their smartphones. 
+         Built on the Unified Payments Interface (UPI) platform, PhonePe allows users to make instant bank-to-bank transfers using their mobile 
+         numbers linked with their bank accounts. The app also offers features like bill payments, online shopping, split bills, request money, 
+         investments, insurance, credit services, QR code payments, and various cashback offers and discounts. Overall, PhonePe provides a seamless 
+         and convenient digital payments experience to its users.")
         st.markdown("[Click here to visit PhonePe's website](https://www.phonepe.com/)")
 
     with col2:
