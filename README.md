@@ -19,47 +19,47 @@ Quick prototyping and development
 
 # Data Exploration
 
-# Aggregated Analysis
-# Aggregated Insurance Analysis
+1. Aggregated Analysis
+i. Aggregated Insurance Analysis
 Select the year using the slider.
 Select the quarter using the slider.
 Select the state using the dropdown menu.
 
-# Aggregated Transaction Analysis
-Select the year using the slider.
-Select the state using the dropdown menu.
-Select the quarter using the slider.
-Select the state based on the quarter using the dropdown menu.
-
-# Aggregated User Analysis
-Select the year using the slider.
-Select the quarter using the slider.
-Select the state based on the quarter using the dropdown menu.
-
-# Map Analysis
-# Map Insurance Analysis
-Select the year using the slider.
-Select the state using the dropdown menu.
-
-# Map Transaction Analysis
+ii. Aggregated Transaction Analysis
 Select the year using the slider.
 Select the state using the dropdown menu.
 Select the quarter using the slider.
 Select the state based on the quarter using the dropdown menu.
 
-# Map User Analysis
+iii. Aggregated User Analysis
+Select the year using the slider.
+Select the quarter using the slider.
+Select the state based on the quarter using the dropdown menu.
+
+2. Map Analysis
+i. Map Insurance Analysis
 Select the year using the slider.
 Select the state using the dropdown menu.
 
-# Top Analysis
-# Top Insurance Analysis
+ii. Map Transaction Analysis
+Select the year using the slider.
+Select the state using the dropdown menu.
+Select the quarter using the slider.
+Select the state based on the quarter using the dropdown menu.
+
+iii. Map User Analysis
 Select the year using the slider.
 Select the state using the dropdown menu.
 
-# Top Transaction Analysis
+3. Top Analysis
+i. Top Insurance Analysis
+Select the year using the slider.
+Select the state using the dropdown menu.
+
+ii. Top Transaction Analysis
 Select the table name using the dropdown menu.
 
-# Top User Analysis
+iii. Top User Analysis
 Select the table name using the dropdown menu.
 Select the state using the dropdown menu.
 
