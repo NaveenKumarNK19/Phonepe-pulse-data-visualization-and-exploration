@@ -38,6 +38,7 @@ Select the quarter using the slider.
 Select the state based on the quarter using the dropdown menu.
 
 2. Map Analysis
+
 i. Map Insurance Analysis
 Select the year using the slider.
 Select the state using the dropdown menu.
@@ -53,6 +54,7 @@ Select the year using the slider.
 Select the state using the dropdown menu.
 
 3. Top Analysis
+
 i. Top Insurance Analysis
 Select the year using the slider.
 Select the state using the dropdown menu.
@@ -66,12 +68,18 @@ Select the state using the dropdown menu.
 
 # Technologies Used
 Streamlit: For creating the user interface and interactive data visualizations.
+
 Plotly: For generating interactive charts and maps.
+
 Pandas: For data manipulation and analysis.
+
 PostgreSQL: For storing and managing the data.
+
 Python: For programming and data processing.
 
 # Usage
 Clone this repository.
+
 Install the required dependencies using pip install -r requirements.txt.
+
 Run the Streamlit application using streamlit run app.py.
