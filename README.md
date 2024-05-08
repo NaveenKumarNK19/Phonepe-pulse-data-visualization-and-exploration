@@ -5,7 +5,7 @@ PhonePe Data Visualization and Exploration is a Streamlit application designed f
 
 This Streamlit application is developed for educational purposes. PhonePe is a comprehensive digital payments platform that enables users to make payments, transfer money, recharge mobile phones, pay utility bills, shop online, and more, directly from their smartphones. Built on the Unified Payments Interface (UPI) platform, PhonePe allows users to make instant bank-to-bank transfers using their mobile numbers linked with their bank accounts. The app also offers features like bill payments, online shopping, split bills, request money, investments, insurance, credit services, QR code payments, and various cashback offers and discounts.
 
-#Features
+# Features
 
 Dynamic data visualization
 Interactive charts and graphs
@@ -20,6 +20,7 @@ Quick prototyping and development
 # Data Exploration
 
 1. Aggregated Analysis
+
 i. Aggregated Insurance Analysis
 Select the year using the slider.
 Select the quarter using the slider.
