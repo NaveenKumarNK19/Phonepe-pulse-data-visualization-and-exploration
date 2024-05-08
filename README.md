@@ -82,4 +82,4 @@ Clone this repository.
 
 Install the required dependencies using pip install -r requirements.txt.
 
-Run the Streamlit application using streamlit run app.py.
+Run the Streamlit application using streamlit run phonepe.py.
