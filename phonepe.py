@@ -12,7 +12,7 @@ from PIL import Image
 mydb = psycopg2.connect(host = 'localhost',
                         user = 'postgres',
                         port = '5432',
-                        password = 'PASSWORD',
+                        password = 'NK19',
                         database = 'phonepe_data')
 cursor = mydb.cursor()
 
@@ -286,8 +286,7 @@ def map_user_plot_2(df, quarter):
     muyqg= muyq.groupby("States")[["RegisteredUsers", "AppOpens"]].sum()
     muyqg.reset_index(inplace= True)
 
-    fig_line_1= px.line(muyqg, x= "States", y= ["RegisteredUsers", "AppOpens"],
-                        title= f"{df['Years'].min()} YEARS {quarter} QUARTER REGISTERED USER, APPOPENS",
+    fig_line_1= px.line(muyqg, x= "States", y= ["RegisteredUsers", "AppOpens"], title= f"{df['Years'].min()} YEARS {quarter} QUARTER REGISTERED USER, APPOPENS",
                         width= 1000, height= 800, markers= True)
     st.plotly_chart(fig_line_1)
 
@@ -302,13 +301,11 @@ def map_user_plot_3(df, states):
     col1, col2 = st.columns(2)
 
     with col1:
-        fig_map_user_bar_1 = px.bar(muyqs, x= "RegisteredUsers", y= 'Districts', orientation= 'h',
-                                    title= f"{states.upper()} REGISTERED USER", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow_r)
+        fig_map_user_bar_1 = px.bar(muyqs, x= "RegisteredUsers", y= 'Districts', orientation= 'h', title= f"{states.upper()} REGISTERED USER", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow_r)
         st.plotly_chart(fig_map_user_bar_1)
 
     with col2:
-        fig_map_user_bar_2 = px.bar(muyqs, x= "AppOpens", y= 'Districts', orientation= 'h',
-                                    title= f"{states.upper()} APPOPENS", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow)
+        fig_map_user_bar_2 = px.bar(muyqs, x= "AppOpens", y= 'Districts', orientation= 'h', title= f"{states.upper()} APPOPENS", height= 800, color_discrete_sequence= px.colors.sequential.Rainbow)
         st.plotly_chart(fig_map_user_bar_2)
 
 #top insurance plot
@@ -320,13 +317,11 @@ def top_insur_plot_1(df, states):
     col1, col2 = st.columns(2)
 
     with col1:
-        fig_top_insur_bar_1 = px.bar(tiy, x= 'Quarter', y= 'Transaction_amount' , hover_data= ['Pincodes'],
-                                     title= f"REGISTERED USER", height= 650, width= 600, color_discrete_sequence= px.colors.sequential.GnBu_r)
+        fig_top_insur_bar_1 = px.bar(tiy, x= 'Quarter', y= 'Transaction_amount' , hover_data= ['Pincodes'], title= f"REGISTERED USER", height= 650, width= 600, color_discrete_sequence= px.colors.sequential.GnBu_r)
         st.plotly_chart(fig_top_insur_bar_1)
 
     with col2:
-        fig_top_insur_bar_2= px.bar(tiy, x= "Quarter", y= "Transaction_count", hover_data= ['Pincodes'],
-                                    title= "TRANSACTION COUNT", height= 650,width= 600, color_discrete_sequence= px.colors.sequential.Agsunset_r)
+        fig_top_insur_bar_2= px.bar(tiy, x= "Quarter", y= "Transaction_count", hover_data= ['Pincodes'], title= "TRANSACTION COUNT", height= 650,width= 600, color_discrete_sequence= px.colors.sequential.Agsunset_r)
         st.plotly_chart(fig_top_insur_bar_2)
 
 
@@ -336,11 +331,10 @@ def top_user_plot_1(df, year):
     tuy = df[df['Years'] == year]
     tuy.reset_index(drop= True, inplace= True)
 
-    tuyg = pd.DataFrame(tuy.groupby(['States', 'Quarter'])['RegisteredUsers', 'Pincodes'].sum())
+    tuyg = pd.DataFrame(tuy.groupby(['States', 'Quarter'])[['RegisteredUsers', 'Pincodes']].sum())
     tuyg.reset_index(inplace= True)
 
-    fig_top_plot_1 = px.bar(tuyg, x= 'States', y= 'RegisteredUsers', color= 'Quarter', width= 1000, height= 800,
-                            color_discrete_sequence= px.colors.sequential.Burgyl, hover_name= tuyg['States'], title= f"{year} REGISTERED USERS")
+    fig_top_plot_1 = px.bar(tuyg, x= 'States', y= 'RegisteredUsers', color= 'Quarter', width= 1000, height= 800, color_discrete_sequence= px.colors.sequential.Burgyl, hover_name= tuyg['States'], title= f"{year} REGISTERED USERS")
     st.plotly_chart(fig_top_plot_1)
 
     return tuy
@@ -352,8 +346,7 @@ def top_user_plot_2(df, state):
     tuys = df[df['States'] == state]
     tuys.reset_index(drop= True, inplace= True)
 
-    fig_top_plot_1 = px.bar(tuys, x= 'Quarter', y= 'RegisteredUsers', title= 'State', width= 1000, height= 800,
-                            color= 'RegisteredUsers', hover_data= ['Pincodes'], color_continuous_scale = px.colors.sequential.Magenta)
+    fig_top_plot_1 = px.bar(tuys, x= 'Quarter', y= 'RegisteredUsers', title= 'State', width= 1000, height= 800, color= 'RegisteredUsers', hover_data= ['Pincodes'], color_continuous_scale = px.colors.sequential.Magenta)
     st.plotly_chart(fig_top_plot_1)
 
 
@@ -663,12 +656,7 @@ if select == 'Home':
         st.header("PHONEPE")
         st.subheader("INDIA'S BEST TRANSACTION APP")
         st.write("This Streamlit application is developed only for educational purposes")
-        st.write("PhonePe is a comprehensive digital payments platform that enables users to make payments,
-         transfer money, recharge mobile phones, pay utility bills, shop online, and more, directly from their smartphones. 
-         Built on the Unified Payments Interface (UPI) platform, PhonePe allows users to make instant bank-to-bank transfers using their mobile 
-         numbers linked with their bank accounts. The app also offers features like bill payments, online shopping, split bills, request money, 
-         investments, insurance, credit services, QR code payments, and various cashback offers and discounts. Overall, PhonePe provides a seamless 
-         and convenient digital payments experience to its users.")
+        st.write("PhonePe is a comprehensive digital payments platform that enables users to make payments, transfer money, recharge mobile phones, pay utility bills, shop online, and more, directly from their smartphones. Built on the Unified Payments Interface (UPI) platform, PhonePe allows users to make instant bank-to-bank transfers using their mobile numbers linked with their bank accounts. The app also offers features like bill payments, online shopping, split bills, request money, investments, insurance, credit services, QR code payments, and various cashback offers and discounts. Overall, PhonePe provides a seamless and convenient digital payments experience to its users.")
         st.markdown("[Click here to visit PhonePe's website](https://www.phonepe.com/)")
 
     with col2:
@@ -745,7 +733,7 @@ elif select == 'Data Exploration':
 
             col1, col2 = st.columns(2)
             with col1:
-                quarters = st.slider("Select the Quarter", Aggre_tran_tac_y['Quarter'].min(), Aggre_tran_tac_y['Quarter'].max(), Aggre_tran_tac_y['Quarter'].min())
+                quarters = st.slider("Select the Quarter ", Aggre_tran_tac_y['Quarter'].min(), Aggre_tran_tac_y['Quarter'].max(), Aggre_tran_tac_y['Quarter'].min())
             Aggre_tran_tac_y_Q = Transaction_amount_count_Y_Q(Aggre_tran_tac_y, quarters)
 
             col1, col2 = st.columns(2)
@@ -756,12 +744,12 @@ elif select == 'Data Exploration':
         elif method == 'Aggregated User Analysis':
             col1, col2 = st.columns(2)
             with col1:
-                years = st.slider("Select the year", Aggre_user['Years'].min(), Aggre_user['Years'].max(), Aggre_user['Years'].min())
+                years = st.slider("Select the year ", Aggre_user['Years'].min(), Aggre_user['Years'].max(), Aggre_user['Years'].min())
             Aggre_user_Y = Aggre_user_plot_1(Aggre_user, years)
 
             col1, col2 = st.columns(2)
             with col1:
-                quater = st.slider("Select the Quarter", Aggre_user_Y['Quarter'].min(), Aggre_user_Y['Quarter'].max(), Aggre_user_Y['Quarter'].min())
+                quater = st.slider("Select the Quarter ", Aggre_user_Y['Quarter'].min(), Aggre_user_Y['Quarter'].max(), Aggre_user_Y['Quarter'].min())
             Aggre_user_Y_Q = Aggre_user_plot_2(Aggre_user_Y, quater)
 
             col1, col2 = st.columns(2)
@@ -818,7 +806,7 @@ elif select == 'Data Exploration':
 
             col1, col2 = st.columns(2)
             with col1:
-                states = st.selectbox("Select the State based on Quarter", map_tran_tac_Y_Q['States'].unique())
+                states = st.selectbox("Select the State based on Quarter  ", map_tran_tac_Y_Q['States'].unique())
             map_insur_district(map_tran_tac_Y_Q, states)
 
 
@@ -839,7 +827,7 @@ elif select == 'Data Exploration':
 
             col1, col2 = st.columns(2)
             with col1:
-                states = st.selectbox("Select the State based on Quarter", map_user_Y_Q['States'].unique())
+                states = st.selectbox("Select the State based on Quarter ", map_user_Y_Q['States'].unique())
             map_user_plot_3(map_user_Y_Q, states)
 
 
@@ -853,12 +841,12 @@ elif select == 'Data Exploration':
             
             col1, col2 = st.columns(2)
             with col1:
-                years = st.slider("Select the year ", top_insurance['Years'].min(), top_insurance['Years'].max(), top_insurance['Years'].min())
+                years = st.slider("Select the year   ", top_insurance['Years'].min(), top_insurance['Years'].max(), top_insurance['Years'].min())
             top_insur_tac_Y = Transaction_amount_count_Y(top_insurance, years)
 
             col1, col2 = st.columns(2)
             with col1:
-                states = st.selectbox("Select the State", top_insur_tac_Y['States'].unique())
+                states = st.selectbox("Select the State   ", top_insur_tac_Y['States'].unique())
             top_insur_plot_1(top_insur_tac_Y, states)
 
             col1,col2= st.columns(2)
@@ -893,7 +881,7 @@ elif select == 'Data Exploration':
             
             col1, col2 = st.columns(2)
             with col1:
-                years = st.slider("Select the year", top_user['Years'].min(), top_user['Years'].max(), top_user['Years'].min())
+                years = st.slider("Select the year   ", top_user['Years'].min(), top_user['Years'].max(), top_user['Years'].min())
             top_user_Y = top_user_plot_1(top_user, years)
 
 
@@ -905,18 +893,18 @@ elif select == 'Data Exploration':
 
 
 elif select == 'Top Charts':
-    question = st.selectbox("Select the Questions", ["1. Transaction Amount and Count of Aggregated Insurance",
-                                                    "2. Transaction Amount and Count of Map Insurance",
-                                                    "3. Transaction Amount and Count of Top Insurance",
-                                                    "4. Transaction Amount and Count of Aggregated Transaction",
-                                                    "5. Transaction Amount and Count of Map Transaction",
-                                                    "6. Transaction Amount and Count of Top Transaction",
-                                                    "7. Transaction Count of Aggregated User",
-                                                    "8. App opens of Map User",
-                                                    "9. Registered users of Top User",])
+    question = st.selectbox("Select the Questions", ["Transaction Amount and Count of Aggregated Insurance",
+                                                    "Transaction Amount and Count of Map Insurance",
+                                                    "Transaction Amount and Count of Top Insurance",
+                                                    "Transaction Amount and Count of Aggregated Transaction",
+                                                    "Transaction Amount and Count of Map Transaction",
+                                                    "Transaction Amount and Count of Top Transaction",
+                                                    "Transaction Count of Aggregated User",
+                                                    "App opens of Map User",
+                                                    "Registered users of Top User",])
 
 
-    if question == "1. Transaction Amount and Count of Aggregated Insurance":
+    if question == "Transaction Amount and Count of Aggregated Insurance":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("aggregated_insurance")
@@ -925,7 +913,7 @@ elif select == 'Top Charts':
         top_chart_transaction_amount("aggregated_insurance")
 
 
-    elif question == "2. Transaction Amount and Count of Map Insurance":
+    elif question == "Transaction Amount and Count of Map Insurance":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("map_insurance")
@@ -933,7 +921,7 @@ elif select == 'Top Charts':
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("map_insurance")
     
-    elif question == "3. Transaction Amount and Count of Top Insurance":
+    elif question == "Transaction Amount and Count of Top Insurance":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("top_insurance")
@@ -941,7 +929,7 @@ elif select == 'Top Charts':
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("top_insurance")
 
-    elif question == "4. Transaction Amount and Count of Aggregated Transaction":
+    elif question == "Transaction Amount and Count of Aggregated Transaction":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("aggregated_transaction")
@@ -949,7 +937,7 @@ elif select == 'Top Charts':
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("aggregated_transaction")
 
-    elif question == "5. Transaction Amount and Count of Map Transaction":
+    elif question == "Transaction Amount and Count of Map Transaction":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("map_transaction")
@@ -957,7 +945,7 @@ elif select == 'Top Charts':
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("map_transaction")
 
-    elif question == "6. Transaction Amount and Count of Top Transaction":
+    elif question == "Transaction Amount and Count of Top Transaction":
         
         st.subheader("TRANSACTION AMOUNT")
         top_chart_transaction_amount("top_transaction")
@@ -965,18 +953,18 @@ elif select == 'Top Charts':
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("top_transaction")
 
-    elif question == "7. Transaction Count of Aggregated User":
+    elif question == "Transaction Count of Aggregated User":
 
         st.subheader("TRANSACTION COUNT")
         top_chart_transaction_count("aggregated_user")
 
-    elif question == "8. App opens of Map User":
+    elif question == "App opens of Map User":
         
         states= st.selectbox("Select the State", map_user["States"].unique())   
         st.subheader("APPOPENS")
         top_chart_appopens("map_user", states)
 
-    elif question == "9. Registered users of Top User":
+    elif question == "Registered users of Top User":
           
         st.subheader("REGISTERED USERS")
         top_chart_registered_users("top_user")
