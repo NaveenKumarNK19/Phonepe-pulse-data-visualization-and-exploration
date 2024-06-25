@@ -851,7 +851,7 @@ elif select == 'Data Exploration':
 
             col1,col2= st.columns(2)
             with col1:
-                quarter = st.slider("Select The Quarter ",top_insur_tac_Y["Quarter"].min(), top_insur_tac_Y["Quarter"].max(),top_insur_tac_Y["Quarter"].min())
+                quarter = st.slider("Select The Quarter   ",top_insur_tac_Y["Quarter"].min(), top_insur_tac_Y["Quarter"].max(),top_insur_tac_Y["Quarter"].min())
             Transaction_amount_count_Y_Q(top_insur_tac_Y, quarter)
 
 
@@ -887,7 +887,7 @@ elif select == 'Data Exploration':
 
             col1, col2 = st.columns(2)
             with col1:
-                states = st.selectbox("Select the State", top_user_Y['States'].unique())
+                states = st.selectbox("Select the State    ", top_user_Y['States'].unique())
             top_user_plot_2(top_user_Y, states)
 
 
@@ -901,7 +901,8 @@ elif select == 'Top Charts':
                                                     "Transaction Amount and Count of Top Transaction",
                                                     "Transaction Count of Aggregated User",
                                                     "App opens of Map User",
-                                                    "Registered users of Top User",])
+                                                    "Registered users of Top User",
+                                                    'Registered users of Map User'])
 
 
     if question == "Transaction Amount and Count of Aggregated Insurance":
@@ -910,7 +911,7 @@ elif select == 'Top Charts':
         top_chart_transaction_amount("aggregated_insurance")
 
         st.subheader("TRANSACTION COUNT")
-        top_chart_transaction_amount("aggregated_insurance")
+        top_chart_transaction_count("aggregated_insurance")
 
 
     elif question == "Transaction Amount and Count of Map Insurance":
@@ -968,6 +969,7 @@ elif select == 'Top Charts':
           
         st.subheader("REGISTERED USERS")
         top_chart_registered_users("top_user")
-
-
-
+    
+    elif question == "Registered users of Map User":  
+        st.subheader("REGISTERED MAP USERS")
+        top_chart_registered_users("map_user")
