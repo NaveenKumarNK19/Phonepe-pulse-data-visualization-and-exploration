@@ -1081,3 +1081,4 @@ elif select == 'Top Charts':
     elif question == "Registered users of Map User":
         st.subheader("REGISTERED MAP USERS")
         top_chart_registered_users("map_user")
+      
